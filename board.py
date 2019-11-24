@@ -101,11 +101,26 @@ class TicTacToe():
         return actions
 
 
-    # def play_game(self):
-    #     turn = 0
-    #     play = True
-    #     while play:
-    #         playerId = turn % 2
+    def play_game(self, type='random'):
+        turn = 0
+        play = True
+        if type == 'random':
+            random = np.random
+        actions = [(0, 0), (0, 1), (0, 2),
+                   (1, 0), (1, 1), (1, 2),
+                   (2, 0), (2, 1), (2, 2)]
+        while play:
+            m = len(actions)
+            playerId = turn % 2
+            pick = random.randint(0, m)
+            move_ind = actions.pop(pick)
+            self.move(*move_ind, playerId)
+            self.print_board()
+            if self.check_winner(playerId):
+                play = False
+                print(f'Player {playerId} - ({self.player[playerId]}) is the winner!')
+            turn += 1
+
 
 
 
@@ -113,29 +128,31 @@ tic_tac_toe = TicTacToe()
 tic_tac_toe.print_board()
 print('\n')
 
-tic_tac_toe.move(1, 1, 0)
-tic_tac_toe.print_board()
-print(f'Possible moves: {tic_tac_toe.possible_actions()}')
-print(f'Check winner: {tic_tac_toe.check_winner(0)}')
-print('\n')
-tic_tac_toe.move(2, 1, 1)
-tic_tac_toe.print_board()
-print(f'Possible moves: {tic_tac_toe.possible_actions()}')
-print(f'Check winner: {tic_tac_toe.check_winner(1)}')
-print('\n')
-tic_tac_toe.move(0, 0, 0)
-tic_tac_toe.print_board()
-print(f'Possible moves: {tic_tac_toe.possible_actions()}')
-print(f'Check winner: {tic_tac_toe.check_winner(0)}')
-print('\n')
-tic_tac_toe.move(2, 0, 1)
-tic_tac_toe.print_board()
-print(f'Possible moves: {tic_tac_toe.possible_actions()}')
-print(f'Check winner: {tic_tac_toe.check_winner(1)}')
-print('\n')
-tic_tac_toe.move(2, 2, 0)
-tic_tac_toe.print_board()
-print(f'Possible moves: {tic_tac_toe.possible_actions()}')
-print(f'Check winner: {tic_tac_toe.check_winner(0)}')
-print('\n')
+tic_tac_toe.play_game()
+
+# tic_tac_toe.move(1, 1, 0)
+# tic_tac_toe.print_board()
+# print(f'Possible moves: {tic_tac_toe.possible_actions()}')
+# print(f'Check winner: {tic_tac_toe.check_winner(0)}')
+# print('\n')
+# tic_tac_toe.move(2, 1, 1)
+# tic_tac_toe.print_board()
+# print(f'Possible moves: {tic_tac_toe.possible_actions()}')
+# print(f'Check winner: {tic_tac_toe.check_winner(1)}')
+# print('\n')
+# tic_tac_toe.move(0, 0, 0)
+# tic_tac_toe.print_board()
+# print(f'Possible moves: {tic_tac_toe.possible_actions()}')
+# print(f'Check winner: {tic_tac_toe.check_winner(0)}')
+# print('\n')
+# tic_tac_toe.move(2, 0, 1)
+# tic_tac_toe.print_board()
+# print(f'Possible moves: {tic_tac_toe.possible_actions()}')
+# print(f'Check winner: {tic_tac_toe.check_winner(1)}')
+# print('\n')
+# tic_tac_toe.move(2, 2, 0)
+# tic_tac_toe.print_board()
+# print(f'Possible moves: {tic_tac_toe.possible_actions()}')
+# print(f'Check winner: {tic_tac_toe.check_winner(0)}')
+# print('\n')
 
