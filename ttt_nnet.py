@@ -36,6 +36,22 @@ class TicTacToeNet(nn.Module):
     def forward(self, x):
         x = self.conv1(x)
         x = self.relu1(x)
+        x = self.conv2(x)
+        x = self.relu2(x)
+        x = self.conv3(x)
+        x = self.relu3(x)
+        x = self.fc(x)
+        x = self.relu4(x)
+
+        pi = self.fc_pi(x)
+        pi = self.logsoftmax(pi)
+
+        v = self.fc_v1(x)
+        v = self.relu_v1(v)
+        v = fc_v2(v)
+        v = torch.tanh(v)
+        return pi, v
+
 
 
 
