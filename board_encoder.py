@@ -27,23 +27,34 @@ def decode_board(encoded_board):
 
 
 # Test a board and see what happens
-
-tic_tac_toe = TicTacToe()
-tic_tac_toe.move(1, 1, 0)
-tic_tac_toe.move(2, 1, 1)
-tic_tac_toe.move(0, 0, 0)
-tic_tac_toe.move(2, 0, 1)
-tic_tac_toe.print_board()
-
-encoded = encode_board(tic_tac_toe, 0)
-
-print(encoded[:, :, 0])
-print(encoded[:, :, 1])
-print(encoded[:, :, 2])
-
-decoded = decode_board(encoded)
-
-print(decoded)
+#
+# tic_tac_toe = TicTacToe()
+# tic_tac_toe.move(1, 1)
+# tic_tac_toe.print_board()
+# tic_tac_toe.next_player()
+# print('------------------')
+# tic_tac_toe.move(2, 1)
+# tic_tac_toe.print_board()
+# tic_tac_toe.next_player()
+# print('------------------')
+# tic_tac_toe.move(0, 0)
+# tic_tac_toe.print_board()
+# tic_tac_toe.next_player()
+# print('------------------')
+# tic_tac_toe.move(2, 0)
+# tic_tac_toe.print_board()
+# tic_tac_toe.next_player()
+# print('------------------')
+#
+# encoded = encode_board(tic_tac_toe, 0)
+#
+# print(encoded[:, :, 0])
+# print(encoded[:, :, 1])
+# print(encoded[:, :, 2])
+#
+# decoded = decode_board(encoded)
+#
+# print(decoded)
 
 
 

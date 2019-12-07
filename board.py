@@ -108,10 +108,11 @@ class TicTacToe():
         moves = 0
         play = True
         random = np.random
+        actions = self.possible_actions()
         # if type != 'random':
-        actions = [(0, 0), (0, 1), (0, 2),
-                   (1, 0), (1, 1), (1, 2),
-                   (2, 0), (2, 1), (2, 2)]
+        # actions = [(0, 0), (0, 1), (0, 2),
+        #            (1, 0), (1, 1), (1, 2),
+        #            (2, 0), (2, 1), (2, 2)]
         while play:
             m = len(actions)
             pick = random.randint(0, m)
@@ -127,36 +128,7 @@ class TicTacToe():
             self.next_player()
             moves += 1
 
-
-tic_tac_toe = TicTacToe()
-tic_tac_toe.print_board()
-print('\n')
-
-tic_tac_toe.play_game()
-
-# tic_tac_toe.move(1, 1, 0)
+# tic_tac_toe = TicTacToe()
 # tic_tac_toe.print_board()
-# print(f'Possible moves: {tic_tac_toe.possible_actions()}')
-# print(f'Check winner: {tic_tac_toe.check_winner(0)}')
-# print('\n')
-# tic_tac_toe.move(2, 1, 1)
-# tic_tac_toe.print_board()
-# print(f'Possible moves: {tic_tac_toe.possible_actions()}')
-# print(f'Check winner: {tic_tac_toe.check_winner(1)}')
-# print('\n')
-# tic_tac_toe.move(0, 0, 0)
-# tic_tac_toe.print_board()
-# print(f'Possible moves: {tic_tac_toe.possible_actions()}')
-# print(f'Check winner: {tic_tac_toe.check_winner(0)}')
-# print('\n')
-# tic_tac_toe.move(2, 0, 1)
-# tic_tac_toe.print_board()
-# print(f'Possible moves: {tic_tac_toe.possible_actions()}')
-# print(f'Check winner: {tic_tac_toe.check_winner(1)}')
-# print('\n')
-# tic_tac_toe.move(2, 2, 0)
-# tic_tac_toe.print_board()
-# print(f'Possible moves: {tic_tac_toe.possible_actions()}')
-# print(f'Check winner: {tic_tac_toe.check_winner(0)}')
-# print('\n')
+# tic_tac_toe.play_game()
 
