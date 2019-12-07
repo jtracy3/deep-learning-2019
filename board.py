@@ -103,32 +103,3 @@ class TicTacToe():
 
     def next_player(self):
         self.player = (self.player + 1) % 2
-
-    def play_game(self, type='random'):
-        moves = 0
-        play = True
-        random = np.random
-        actions = self.possible_actions()
-        # if type != 'random':
-        # actions = [(0, 0), (0, 1), (0, 2),
-        #            (1, 0), (1, 1), (1, 2),
-        #            (2, 0), (2, 1), (2, 2)]
-        while play:
-            m = len(actions)
-            pick = random.randint(0, m)
-            move_ind = actions.pop(pick)
-            self.move(*move_ind)
-            self.print_board()
-            if self.check_winner():
-                play = False
-                print(f'Player {self.player} is the winner!')
-            elif not self.check_winner() and self.possible_actions() == []:
-                play = False
-                print(f'Draw')
-            self.next_player()
-            moves += 1
-
-# tic_tac_toe = TicTacToe()
-# tic_tac_toe.print_board()
-# tic_tac_toe.play_game()
-
