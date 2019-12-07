@@ -40,6 +40,7 @@ class TicTacToeNet(nn.Module):
         x = self.relu2(x)
         x = self.conv3(x)
         x = self.relu3(x)
+        x = flatten(x)
         x = self.fc(x)
         x = self.relu4(x)
 
