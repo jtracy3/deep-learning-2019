@@ -1,9 +1,9 @@
 import numpy as np
 from board import TicTacToe
 
-def encode_board(TicTacToe):
-    board_st = TicTacToe.current_board
-    player = TicTacToe.player
+def encode_board(board, player):
+    board_st = board
+    player = player
     board_enc = np.zeros([3,3,3]).astype(int)
     for i in range(3):
         for j in range(3):
@@ -29,33 +29,34 @@ def decode_board(encoded_board):
 
 # Test a board and see what happens
 #
-tic_tac_toe = TicTacToe()
-tic_tac_toe.move(1, 1)
-tic_tac_toe.print_board()
-tic_tac_toe.next_player()
-print('------------------')
-tic_tac_toe.move(2, 1)
-tic_tac_toe.print_board()
-tic_tac_toe.next_player()
-print('------------------')
-tic_tac_toe.move(0, 0)
-tic_tac_toe.print_board()
-tic_tac_toe.next_player()
-print('------------------')
-tic_tac_toe.move(2, 0)
-tic_tac_toe.print_board()
+# tic_tac_toe = TicTacToe()
+# tic_tac_toe.move(1, 1)
+# tic_tac_toe.print_board()
 # tic_tac_toe.next_player()
-print('------------------')
-
-encoded = encode_board(tic_tac_toe)
-
-print(encoded[:, :, 0])
-print(encoded[:, :, 1])
-print(encoded[:, :, 2])
-
-decoded = decode_board(encoded)
-
-print(decoded)
+# print('------------------')
+# tic_tac_toe.move(2, 1)
+# tic_tac_toe.print_board()
+# tic_tac_toe.next_player()
+# print('------------------')
+# tic_tac_toe.move(0, 0)
+# tic_tac_toe.print_board()
+# tic_tac_toe.next_player()
+# print('------------------')
+# tic_tac_toe.move(2, 0)
+# tic_tac_toe.print_board()
+# # tic_tac_toe.next_player()
+# print('------------------')
+#
+# encoded = encode_board(tic_tac_toe)
+# encoded
+# #
+# print(encoded[:, :, 0])
+# print(encoded[:, :, 1])
+# print(encoded[:, :, 2])
+#
+# decoded = decode_board(encoded)
+#
+# print(decoded)
 
 
 
