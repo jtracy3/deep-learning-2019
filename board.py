@@ -103,7 +103,7 @@ class TicTacToe():
 
     def check_winner_reward(self):
         """Checks if the game is over and return a possible winner.
-        There are 3 possible scenarios.
+        There are 3 possible scenarios
             a) The game is over and we have a winner.
             b) The game is over but it is a draw.
             c) The game is not over.
