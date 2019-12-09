@@ -10,27 +10,6 @@ from keras.layers import Dropout
 
 model = pickle.load(open('dnn_model.pkl', 'rb'))
 
-# def play_game():
-#     game_data = dict(moves=list(), board_history=list(), winner=None)
-#     board = TicTacToe()
-#     play = True
-#     while play and board.possible_actions() != []:
-#         actions = board.possible_actions()
-#         print(actions)
-#         m = len(actions)
-#         pick = np.random.randint(0, m)
-#         move_ind = actions[pick]
-#         board.move(*move_ind)
-#         if board.check_winner():
-#             play = False
-#             game_data['winner'] = board.player
-#         elif not board.check_winner() and board.possible_actions() == []:
-#             play = False
-#             game_data['winner'] = 0.5
-#         game_data['moves'].append((board.player, move_ind))
-#         game_data['board_history'].append(deepcopy(board.current_board))
-#         board.next_player()
-#     return game_data
 
 def best_move(board, model, player, rnd=0):
     scores = []
@@ -66,6 +45,7 @@ def best_move(board, model, player, rnd=0):
     # Choose a move completely at random
     return moves[random.randint(0, len(moves) - 1)]
 
+
 def play_game(p1=None,p2=None,rnd=0):
     game_data = dict(moves=list(), board_history=list(), winner=None)
     board = TicTacToe()
@@ -95,17 +75,19 @@ def play_game(p1=None,p2=None,rnd=0):
         game_data['moves'].append((board.player, move_ind))
         game_data['board_history'].append(deepcopy(board.current_board))
         board.next_player()
+    # print(f"The final board state is\n{board.current_board}\nand the winner is {game_data['winner']}")
+    board.print_board()
+    print(game_data['winner'])
     return game_data
-
 
 # game_data = play_game_reward()
 # print(game_data)
+
 
 def gather_game_results(n_games, p1=None, p2=None, rnd=0):
     results = dict(x_wins=0, o_wins=0, draws=0)
     for i in range(n_games):
         sim_game = play_game(p1=p1,p2=p2,rnd=rnd)
-        #sim_game = play_game_reward()
         if sim_game['winner'] == 0:
             results['x_wins'] += 1
         elif sim_game['winner'] == 1:
@@ -120,6 +102,7 @@ def gather_game_results(n_games, p1=None, p2=None, rnd=0):
     print(f'The winning percentage for O was {o_win_pct*100:.2f}% in {n_games} random simulations')
     print(f'The percentage of draws was {draw_pct*100:.2f}% in {n_games} random simulations')
 
+
 game_data = play_game(p1=model)
 print(game_data)
 
@@ -132,7 +115,7 @@ gather_game_results(100,p1=model)
 #         sim_game = play_game()
 #         results['data'].append(sim_game[0])
 #         results['value'].append(sim_game[1])
-#         results['n_moves'].append(sim_game[2])
+#         results['n_moves'].append(sim_game[2q])
 #     return results
 
 # def create_mock_data(results, n_states, seed=0):
