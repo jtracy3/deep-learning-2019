@@ -34,8 +34,8 @@ def play_game():
         #print(actions)
         m = len(actions)
         pick = np.random.randint(0, m)
-        move_ind = actions[pick]
-        board.move(*move_ind)
+        move_tup = actions[pick]
+        board.move(*move_tup)
         a_winner, reward = board.check_winner()
         if a_winner and reward != 0:
             play = False
@@ -43,11 +43,13 @@ def play_game():
         elif a_winner and reward == 0:
             play = False
             game_data['winner'] = 0.5
-        game_data['moves'].append((board.player, move_ind))
+        game_data['moves'].append((board.player, move_tup))
         game_data['board_history'].append(deepcopy(board.current_board))
         board.next_player()
+    # print(f"The final board state is\n{board.current_board}\nand the winner is {game_data['winner']}")
+    board.print_board()
+    print(game_data['winner'])
     return game_data
-
 
 # game_data = play_game_reward()
 # print(game_data)
@@ -56,7 +58,7 @@ def gather_game_results(n_games):
     results = dict(x_wins=0, o_wins=0, draws=0)
     for i in range(n_games):
         #sim_game = play_game()
-        sim_game = play_game_reward()
+        sim_game = play_game()
         if sim_game['winner'] == 0:
             results['x_wins'] += 1
         elif sim_game['winner'] == 1:
@@ -73,7 +75,26 @@ def gather_game_results(n_games):
 
 game_data = play_game()
 print(game_data)
-# gather_game_results(1000)
+
+# def gather_game_results(n_games):
+#     results = dict(x_wins=0, o_wins=0, draws=0)
+#     for i in range(n_games):
+#         sim_game = play_game()
+#         if sim_game['winner'] == 0:
+#             results['x_wins'] += 1
+#         elif sim_game['winner'] == 1:
+#             results['o_wins'] += 1
+#         else:
+#             results['draws'] += 1
+#     x_win_pct = results['x_wins'] / n_games
+#     o_win_pct = results['o_wins'] / n_games
+#     draw_pct = results['draws'] / n_games
+#
+#     print(f'The winning percentage for X was {x_win_pct*100:.2f}% in {n_games} random simulations')
+#     print(f'The winning percentage for O was {o_win_pct*100:.2f}% in {n_games} random simulations')
+#     print(f'The percentage of draws was {draw_pct*100:.2f}% in {n_games} random simulations')
+
+# gather_game_results(10000)
 
 # def simulate_games(n_iter):
 #     results = dict(data=[], value=[], n_moves=[])
@@ -81,7 +102,7 @@ print(game_data)
 #         sim_game = play_game()
 #         results['data'].append(sim_game[0])
 #         results['value'].append(sim_game[1])
-#         results['n_moves'].append(sim_game[2])
+#         results['n_moves'].append(sim_game[2q])
 #     return results
 
 # def create_mock_data(results, n_states, seed=0):

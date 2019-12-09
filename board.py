@@ -185,3 +185,16 @@ class TicTacToe():
 
     def next_player(self):
         self.player = (self.player + 1) % 2
+
+    def debug_board(self, positions):
+        self.current_board = self.setup_board
+        for key, value in positions.items():
+            for row, col in value:
+                self.current_board[row, col] = key
+
+# board = TicTacToe()
+# board_dict = {'X': [(0, 1), (0, 2), (1, 0), (2, 1), (2, 2)],
+#               'O': [(0, 0), (1, 1), (1, 2), (2, 0)]}
+# board.debug_board(board_dict)
+# board.print_board()
+# print(board.check_winner())
