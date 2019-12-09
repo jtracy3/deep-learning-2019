@@ -2,21 +2,45 @@ from board import TicTacToe
 import numpy as np
 from copy import deepcopy
 
+# def play_game():
+#     game_data = dict(moves=list(), board_history=list(), winner=None)
+#     board = TicTacToe()
+#     play = True
+#     while play and board.possible_actions() != []:
+#         actions = board.possible_actions()
+#         print(actions)
+#         m = len(actions)
+#         pick = np.random.randint(0, m)
+#         move_ind = actions[pick]
+#         board.move(*move_ind)
+#         if board.check_winner():
+#             play = False
+#             game_data['winner'] = board.player
+#         elif not board.check_winner() and board.possible_actions() == []:
+#             play = False
+#             game_data['winner'] = 0.5
+#         game_data['moves'].append((board.player, move_ind))
+#         game_data['board_history'].append(deepcopy(board.current_board))
+#         board.next_player()
+#     return game_data
+
 def play_game():
     game_data = dict(moves=list(), board_history=list(), winner=None)
     board = TicTacToe()
     play = True
-    while play and board.possible_actions() != []:
+    actions = board.possible_actions()
+    while play and actions:
         actions = board.possible_actions()
-        print(actions)
+        #print(actions)
         m = len(actions)
         pick = np.random.randint(0, m)
         move_ind = actions[pick]
         board.move(*move_ind)
-        if board.check_winner():
+        a_winner, reward = board.check_winner()
+        if a_winner and reward != 0:
             play = False
             game_data['winner'] = board.player
-        elif not board.check_winner() and board.possible_actions() == []:
+        elif a_winner and reward == 0:
             play = False
             game_data['winner'] = 0.5
         game_data['moves'].append((board.player, move_ind))
@@ -24,13 +48,15 @@ def play_game():
         board.next_player()
     return game_data
 
-# game_data = play_game()
+
+# game_data = play_game_reward()
 # print(game_data)
 
 def gather_game_results(n_games):
     results = dict(x_wins=0, o_wins=0, draws=0)
     for i in range(n_games):
-        sim_game = play_game()
+        #sim_game = play_game()
+        sim_game = play_game_reward()
         if sim_game['winner'] == 0:
             results['x_wins'] += 1
         elif sim_game['winner'] == 1:
@@ -45,6 +71,8 @@ def gather_game_results(n_games):
     print(f'The winning percentage for O was {o_win_pct*100:.2f}% in {n_games} random simulations')
     print(f'The percentage of draws was {draw_pct*100:.2f}% in {n_games} random simulations')
 
+game_data = play_game()
+print(game_data)
 # gather_game_results(1000)
 
 # def simulate_games(n_iter):
