@@ -18,79 +18,79 @@ class TicTacToe():
             raise Exception('Invalid placement')
         self.current_board[row, column] = self.player_map[self.player]
 
-    def check_winner(self):
-        n_rows, n_cols = self.current_board.shape
-        if self.player_map[self.player] == 'X':
-            for row in range(n_rows):
-                for col in range(n_cols):
-                    if self.current_board[row, col] != ' ':
-                        try:
-                            if self.current_board[row, col] == 'X'\
-                                    and self.current_board[row + 1, col] == 'X'\
-                                    and self.current_board[row + 2, col] == 'X':
-                                return True
-                        except IndexError:
-                            pass
-
-                        try:
-                            if self.current_board[row, col] == 'X' \
-                                    and self.current_board[row, col + 1] == 'X' \
-                                    and self.current_board[row, col + 2] == 'X':
-                                return True
-                        except IndexError:
-                            pass
-
-                        try:
-                            if self.current_board[row, col] == 'X' \
-                                    and self.current_board[row + 1, col + 1] == 'X' \
-                                    and self.current_board[row + 2, col + 2] == 'X':
-                                return True
-                        except IndexError:
-                            pass
-
-                        try:
-                            if self.current_board[row, col] == 'X' \
-                                    and self.current_board[row + 1, col - 1] == 'X' \
-                                    and self.current_board[row + 2, col - 2] == 'X':
-                                return True
-                        except IndexError:
-                            pass
-
-        if self.player_map[self.player] == 'O':
-            for row in range(n_rows):
-                for col in range(n_cols):
-                    if self.current_board[row, col] != ' ':
-                        try:
-                            if self.current_board[row, col] == 'O'\
-                                    and self.current_board[row + 1, col] == 'O'\
-                                    and self.current_board[row + 2, col] == 'O':
-                                return True
-                        except IndexError:
-                            pass
-
-                        try:
-                            if self.current_board[row, col] == 'O' \
-                                    and self.current_board[row, col + 1] == 'O' \
-                                    and self.current_board[row, col + 2] == 'O':
-                                return True
-                        except IndexError:
-                            pass
-
-                        try:
-                            if self.current_board[row, col] == 'O' \
-                                    and self.current_board[row + 1, col + 1] == 'O' \
-                                    and self.current_board[row + 2, col + 2] == 'O':
-                                return True
-                        except IndexError:
-                            pass
-
-                        try:
-                            if self.current_board[row, col] == 'O' \
-                                    and self.current_board[row + 1, col - 1] == 'O' \
-                                    and self.current_board[row + 2, col - 2] == 'O':
-                                return True
-                        except IndexError:
-                            pass
+   # def check_winner(self):
+        # n_rows, n_cols = self.current_board.shape
+        # if self.player_map[self.player] == 'X':
+        #     for row in range(n_rows):
+        #         for col in range(n_cols):
+        #             if self.current_board[row, col] != ' ':
+        #                 try:
+        #                     if self.current_board[row, col] == 'X'\
+        #                             and self.current_board[row + 1, col] == 'X'\
+        #                             and self.current_board[row + 2, col] == 'X':
+        #                         return True
+        #                 except IndexError:
+        #                     pass
+        #
+        #                 try:
+        #                     if self.current_board[row, col] == 'X' \
+        #                             and self.current_board[row, col + 1] == 'X' \
+        #                             and self.current_board[row, col + 2] == 'X':
+        #                         return True
+        #                 except IndexError:
+        #                     pass
+        #
+        #                 try:
+        #                     if self.current_board[row, col] == 'X' \
+        #                             and self.current_board[row + 1, col + 1] == 'X' \
+        #                             and self.current_board[row + 2, col + 2] == 'X':
+        #                         return True
+        #                 except IndexError:
+        #                     pass
+        #
+        #                 try:
+        #                     if self.current_board[row, col] == 'X' \
+        #                             and self.current_board[row + 1, col - 1] == 'X' \
+        #                             and self.current_board[row + 2, col - 2] == 'X':
+        #                         return True
+        #                 except IndexError:
+        #                     pass
+        #
+        # if self.player_map[self.player] == 'O':
+        #     for row in range(n_rows):
+        #         for col in range(n_cols):
+        #             if self.current_board[row, col] != ' ':
+        #                 try:
+        #                     if self.current_board[row, col] == 'O'\
+        #                             and self.current_board[row + 1, col] == 'O'\
+        #                             and self.current_board[row + 2, col] == 'O':
+        #                         return True
+        #                 except IndexError:
+        #                     pass
+        #
+        #                 try:
+        #                     if self.current_board[row, col] == 'O' \
+        #                             and self.current_board[row, col + 1] == 'O' \
+        #                             and self.current_board[row, col + 2] == 'O':
+        #                         return True
+        #                 except IndexError:
+        #                     pass
+        #
+        #                 try:
+        #                     if self.current_board[row, col] == 'O' \
+        #                             and self.current_board[row + 1, col + 1] == 'O' \
+        #                             and self.current_board[row + 2, col + 2] == 'O':
+        #                         return True
+        #                 except IndexError:
+        #                     pass
+        #
+        #                 try:
+        #                     if self.current_board[row, col] == 'O' \
+        #                             and self.current_board[row + 1, col - 1] == 'O' \
+        #                             and self.current_board[row + 2, col - 2] == 'O':
+        #                         return True
+        #                 except IndexError:
+        #                     pass
 
     def possible_actions(self):
         n_rows, n_cols = self.current_board.shape
@@ -101,17 +101,17 @@ class TicTacToe():
                     actions.append((row, col))
         return actions
 
-    def check_winner_reward(self):
+    def check_winner(self):
         """Checks if the game is over and return a possible winner.
         There are 3 possible scenarios
             a) The game is over and we have a winner.
             b) The game is over but it is a draw.
             c) The game is not over.
         Args:
-            current_player: An integer representing the current player.
+            Takes a TicTacToe board
         Returns:
             A bool representing the game over state.
-            An integer action value. (win: 1, loss: -1, draw: 0
+            An integer action value. (win: 1, loss: -1, draw: 0)
         """
         n_rows, n_cols = self.current_board.shape
 
@@ -177,7 +177,7 @@ class TicTacToe():
 
         # There are still moves left so the game is not over
         actions = self.possible_actions()
-        if not actions:
+        if actions:
             return False, 0
 
         # If there are no moves left the game is over without a winner
