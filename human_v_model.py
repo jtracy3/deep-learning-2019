@@ -7,7 +7,7 @@ import time
 
 model = pickle.load(open('dnn_model.pkl', 'rb'))
 
-def bestMove(board, model, player, rnd=0):
+def best_move(board, model, player, rnd=0):
     scores = []
     moves = board.possible_actions()
 
@@ -41,15 +41,15 @@ def bestMove(board, model, player, rnd=0):
     # Choose a move completely at random
     return moves[random.randint(0, len(moves) - 1)]
 
-def getPlayerMove():
+def get_player_move():
     row = int(input("Enter the row that you want to play on (1, 2, or 3): ")) - 1
     col = int(input("Now enter the column that you want to play on (1, 2, or 3): ")) - 1
     print("\n")
 
     return row, col
 
-def idiotCheck(i=0):
-    row, col = getPlayerMove()
+def idiot_check(i=0):
+    row, col = get_player_move()
     if (i > 2):
         print("You've failed too many times. This game is ending")
         return "break","break"
@@ -57,12 +57,12 @@ def idiotCheck(i=0):
         print("What you entered is not 1, 2, or 3. Try again")
         board.print_board()
         i += 1
-        return idiotCheck(i=i)
+        return idiot_check(i=i)
     if board.current_board[row, col] != ' ':
         print("That space on the board is already taken. Try again")
         board.print_board()
         i += 1
-        return idiotCheck(i=i)
+        return idiot_check(i=i)
     return row, col
 
 
@@ -92,7 +92,7 @@ while playAgain == 'y':
 
         if board.player - var == -1:
 
-            row, col = idiotCheck()
+            row, col = idiot_check()
 
             if row == "break":
                 break
@@ -106,7 +106,7 @@ while playAgain == 'y':
             time.sleep(1)
             print("My turn: ")
             time.sleep(1)
-            move_ind = bestMove(board, model, board.player, 0)
+            move_ind = best_move(board, model, board.player, 0)
             board.move(*move_ind)
 
             board.print_board()

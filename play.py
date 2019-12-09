@@ -31,7 +31,7 @@ model = pickle.load(open('dnn_model.pkl', 'rb'))
 #         board.next_player()
 #     return game_data
 
-def bestMove(board, model, player, rnd=0):
+def best_move(board, model, player, rnd=0):
     scores = []
     moves = board.possible_actions()
 
@@ -75,10 +75,10 @@ def play_game(p1=None,p2=None,rnd=0):
         #print(actions)
         m = len(actions)
         if board.player == 0 and p1 != None:
-          move_ind = bestMove(board, p1, board.player, rnd)
+          move_ind = best_move(board, p1, board.player, rnd)
           board.move(*move_ind)
         elif board.player == 1 and p2 != None:
-          move_ind = bestMove(board, p2, board.player, rnd)
+          move_ind = best_move(board, p2, board.player, rnd)
           board.move(*move_ind)
         else:
           pick = np.random.randint(0, m)
