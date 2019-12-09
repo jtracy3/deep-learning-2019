@@ -26,7 +26,7 @@ class TicTacToe():
                 flattened[j] = 2
               j += 1
         return flattened
-
+      
     def move(self, row, column):
         if self.current_board[row, column] != ' ':
             raise Exception('Invalid placement')

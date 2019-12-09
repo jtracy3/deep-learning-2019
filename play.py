@@ -9,6 +9,7 @@ from keras.layers import Dense
 from keras.layers import Dropout
 
 model = pickle.load(open('dnn_model.pkl', 'rb'))
+
 # def play_game():
 #     game_data = dict(moves=list(), board_history=list(), winner=None)
 #     board = TicTacToe()
@@ -84,7 +85,6 @@ def play_game(p1=None,p2=None,rnd=0):
           pick = np.random.randint(0, m)
           move_ind = actions[pick]
           board.move(*move_ind)
-
         a_winner, reward = board.check_winner()
         if a_winner and reward != 0:
             play = False
