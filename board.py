@@ -13,6 +13,20 @@ class TicTacToe():
         for line in self.current_board:
             print(line)
 
+    def flatten_board(self):
+        flattened = [0] * 9
+        j = 0
+        for line in self.current_board:
+            for i in line:
+              if i == ' ':
+                flattened[j] = 0
+              elif i == 'X':
+                flattened[j] = 1
+              elif i == 'O':
+                flattened[j] = 2
+              j += 1
+        return flattened
+      
     def move(self, row, column):
         if self.current_board[row, column] != ' ':
             raise Exception('Invalid placement')
