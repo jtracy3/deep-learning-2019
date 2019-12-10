@@ -53,10 +53,10 @@ def get_player_move():
 
 def idiot_check(i=0):
     row, col = get_player_move()
-    if (i > 2):
+    if i > 2:
         print("You've failed too many times. This game is ending")
-        return "break","break"
-    if row not in [0,1,2] or col not in [0,1,2]:
+        return "break", "break"
+    if row not in [0, 1, 2] or col not in [0, 1, 2]:
         print("What you entered is not 1, 2, or 3. Try again")
         board.print_board()
         i += 1
@@ -77,7 +77,7 @@ while playAgain == 'y':
     var = int(input("Would you like to go first or second? Enter 1 for first, 2 for 2nd: "))
     print("\n")
 
-    if var not in [1,2]:
+    if var not in [1, 2]:
         print("You didn't enter either 1 or 2...")
         skip = True
 
