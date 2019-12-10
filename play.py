@@ -3,12 +3,8 @@ import numpy as np
 from copy import deepcopy
 import pickle
 import random
-import keras
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.layers import Dropout
 
-model = pickle.load(open('dnn_model.pkl', 'rb'))
+ttt_model = pickle.load(open('dnn_model.pkl', 'rb'))
 
 
 def best_move(board, model, player, rnd=0):
@@ -24,47 +20,46 @@ def best_move(board, model, player, rnd=0):
         flattened_board = flattened_board.reshape((-1,9))
         prediction = model.predict(flattened_board)[0]
         if player == 0:
-            winPrediction = prediction[1]
-            lossPrediction = prediction[2]
+            win_prediction = prediction[1]
+            loss_prediction = prediction[2]
         else:
-            winPrediction = prediction[2]
-            lossPrediction = prediction[1]
-        drawPrediction = prediction[0]
+            win_prediction = prediction[2]
+            loss_prediction = prediction[1]
+        draw_prediction = prediction[0]
 
-        if winPrediction - lossPrediction > 0:
-            scores.append(winPrediction - lossPrediction)
+        if win_prediction - loss_prediction > 0:
+            scores.append(win_prediction - loss_prediction)
         else:
-            scores.append(drawPrediction - lossPrediction)
+            scores.append(draw_prediction - loss_prediction)
 
     # Choose the best move with a random factor
-    bestMoves = np.flip(np.argsort(scores))
-    for i in range(len(bestMoves)):
+    best_moves = np.flip(np.argsort(scores))
+    for i in range(len(best_moves)):
         if random.random() * rnd < 0.5:
-            return moves[bestMoves[i]]
+            return moves[best_moves[i]]
 
     # Choose a move completely at random
     return moves[random.randint(0, len(moves) - 1)]
 
 
-def play_game(p1=None,p2=None,rnd=0):
+def play_game(p1=None, p2=None, rnd=0):
     game_data = dict(moves=list(), board_history=list(), winner=None)
     board = TicTacToe()
     play = True
     actions = board.possible_actions()
     while play and actions:
         actions = board.possible_actions()
-        #print(actions)
         m = len(actions)
-        if board.player == 0 and p1 != None:
-          move_ind = best_move(board, p1, board.player, rnd)
-          board.move(*move_ind)
-        elif board.player == 1 and p2 != None:
-          move_ind = best_move(board, p2, board.player, rnd)
-          board.move(*move_ind)
+        if board.player == 0 and p1 is not None:
+            move_ind = best_move(board, p1, board.player, rnd)
+            board.move(*move_ind)
+        elif board.player == 1 and p2 is not None:
+            move_ind = best_move(board, p2, board.player, rnd)
+            board.move(*move_ind)
         else:
-          pick = np.random.randint(0, m)
-          move_ind = actions[pick]
-          board.move(*move_ind)
+            pick = np.random.randint(0, m)
+            move_ind = actions[pick]
+            board.move(*move_ind)
         a_winner, reward = board.check_winner()
         if a_winner and reward != 0:
             play = False
@@ -75,13 +70,9 @@ def play_game(p1=None,p2=None,rnd=0):
         game_data['moves'].append((board.player, move_ind))
         game_data['board_history'].append(deepcopy(board.current_board))
         board.next_player()
-    # print(f"The final board state is\n{board.current_board}\nand the winner is {game_data['winner']}")
     board.print_board()
     print(game_data['winner'])
     return game_data
-
-# game_data = play_game_reward()
-# print(game_data)
 
 
 def gather_game_results(n_games, p1=None, p2=None, rnd=0):
@@ -103,11 +94,10 @@ def gather_game_results(n_games, p1=None, p2=None, rnd=0):
     print(f'The percentage of draws was {draw_pct*100:.2f}% in {n_games} random simulations')
 
 
-game_data = play_game(p1=model)
+game_data = play_game(p1=ttt_model)
 print(game_data)
 
-gather_game_results(100,p1=model)
-# gather_game_results(1000)
+gather_game_results(100, p1=ttt_model)
 
 # def simulate_games(n_iter):
 #     results = dict(data=[], value=[], n_moves=[])
