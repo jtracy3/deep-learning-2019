@@ -42,12 +42,14 @@ def best_move(board, model, player, rnd=0):
     # Choose a move completely at random
     return moves[random.randint(0, len(moves) - 1)]
 
+
 def get_player_move():
     row = int(input("Enter the row that you want to play on (1, 2, or 3): ")) - 1
     col = int(input("Now enter the column that you want to play on (1, 2, or 3): ")) - 1
     print("\n")
 
     return row, col
+
 
 def idiot_check(i=0):
     row, col = get_player_move()
@@ -107,7 +109,7 @@ while playAgain == 'y':
             time.sleep(1)
             print("My turn: ")
             time.sleep(1)
-            move_ind = best_move(board, model, board.player, 0)
+            move_ind = best_move(board, ttt_model, board.player, 0)
             board.move(*move_ind)
 
             board.print_board()
