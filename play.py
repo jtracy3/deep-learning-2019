@@ -89,9 +89,9 @@ def gather_game_results(n_games, p1=None, p2=None, rnd=0):
     o_win_pct = results['o_wins'] / n_games
     draw_pct = results['draws'] / n_games
 
-    print(f'The winning percentage for X was {x_win_pct*100:.2f}% in {n_games} random simulations')
-    print(f'The winning percentage for O was {o_win_pct*100:.2f}% in {n_games} random simulations')
-    print(f'The percentage of draws was {draw_pct*100:.2f}% in {n_games} random simulations')
+    print(f'The winning percentage for X was {x_win_pct*100:.1f}% in {n_games} random simulations')
+    print(f'The winning percentage for O was {o_win_pct*100:.1f}% in {n_games} random simulations')
+    print(f'The percentage of draws was {draw_pct*100:.1f}% in {n_games} random simulations')
 
 
 game_data = play_game(p1=ttt_model)
