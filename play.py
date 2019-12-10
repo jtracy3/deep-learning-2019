@@ -97,7 +97,26 @@ def gather_game_results(n_games, p1=None, p2=None, rnd=0):
 game_data = play_game(p1=ttt_model)
 print(game_data)
 
-gather_game_results(100, p1=ttt_model)
+# def gather_game_results(n_games):
+#     results = dict(x_wins=0, o_wins=0, draws=0)
+#     for i in range(n_games):
+#         sim_game = play_game()
+#         if sim_game['winner'] == 0:
+#             results['x_wins'] += 1
+#         elif sim_game['winner'] == 1:
+#             results['o_wins'] += 1
+#         else:
+#             results['draws'] += 1
+#     x_win_pct = results['x_wins'] / n_games
+#     o_win_pct = results['o_wins'] / n_games
+#     draw_pct = results['draws'] / n_games
+#
+#     print(f'The winning percentage for X was {x_win_pct*100:.2f}% in {n_games} random simulations')
+#     print(f'The winning percentage for O was {o_win_pct*100:.2f}% in {n_games} random simulations')
+#     print(f'The percentage of draws was {draw_pct*100:.2f}% in {n_games} random simulations')
+
+# gather_game_results(10000)
+>>>>>>> 7fa9940388f417682d213c5d064d0a6ab3ced62b
 
 # def simulate_games(n_iter):
 #     results = dict(data=[], value=[], n_moves=[])

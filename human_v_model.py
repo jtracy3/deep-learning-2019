@@ -42,6 +42,7 @@ def best_move(board, model, player, rnd=0):
     # Choose a move completely at random
     return moves[random.randint(0, len(moves) - 1)]
 
+
 def get_player_move():
     row = int(input("Enter the row that you want to play on (1, 2, or 3): ")) - 1
     col = int(input("Now enter the column that you want to play on (1, 2, or 3): ")) - 1
@@ -49,12 +50,13 @@ def get_player_move():
 
     return row, col
 
+
 def idiot_check(i=0):
     row, col = get_player_move()
-    if (i > 2):
+    if i > 2:
         print("You've failed too many times. This game is ending")
-        return "break","break"
-    if row not in [0,1,2] or col not in [0,1,2]:
+        return "break", "break"
+    if row not in [0, 1, 2] or col not in [0, 1, 2]:
         print("What you entered is not 1, 2, or 3. Try again")
         board.print_board()
         i += 1
@@ -75,7 +77,7 @@ while playAgain == 'y':
     var = int(input("Would you like to go first or second? Enter 1 for first, 2 for 2nd: "))
     print("\n")
 
-    if var not in [1,2]:
+    if var not in [1, 2]:
         print("You didn't enter either 1 or 2...")
         skip = True
 
@@ -107,7 +109,7 @@ while playAgain == 'y':
             time.sleep(1)
             print("My turn: ")
             time.sleep(1)
-            move_ind = best_move(board, model, board.player, 0)
+            move_ind = best_move(board, ttt_model, board.player, 0)
             board.move(*move_ind)
 
             board.print_board()
