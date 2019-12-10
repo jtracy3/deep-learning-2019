@@ -5,7 +5,8 @@ import pickle
 import random
 import time
 
-model = pickle.load(open('dnn_model.pkl', 'rb'))
+ttt_model = pickle.load(open('dnn_model.pkl', 'rb'))
+
 
 def best_move(board, model, player, rnd=0):
     scores = []
@@ -20,23 +21,23 @@ def best_move(board, model, player, rnd=0):
         flattened_board = flattened_board.reshape((-1,9))
         prediction = model.predict(flattened_board)[0]
         if player == 0:
-            winPrediction = prediction[1]
-            lossPrediction = prediction[2]
+            win_prediction = prediction[1]
+            loss_prediction = prediction[2]
         else:
-            winPrediction = prediction[2]
-            lossPrediction = prediction[1]
-        drawPrediction = prediction[0]
+            win_prediction = prediction[2]
+            loss_prediction = prediction[1]
+        draw_prediction = prediction[0]
 
-        if winPrediction - lossPrediction > 0:
-            scores.append(winPrediction - lossPrediction)
+        if win_prediction - loss_prediction > 0:
+            scores.append(win_prediction - loss_prediction)
         else:
-            scores.append(drawPrediction - lossPrediction)
+            scores.append(draw_prediction - loss_prediction)
 
     # Choose the best move with a random factor
-    bestMoves = np.flip(np.argsort(scores))
-    for i in range(len(bestMoves)):
+    best_moves = np.flip(np.argsort(scores))
+    for i in range(len(best_moves)):
         if random.random() * rnd < 0.5:
-            return moves[bestMoves[i]]
+            return moves[best_moves[i]]
 
     # Choose a move completely at random
     return moves[random.randint(0, len(moves) - 1)]

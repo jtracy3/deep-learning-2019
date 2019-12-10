@@ -1,10 +1,11 @@
 import numpy as np
 from board import TicTacToe
 
+
 def encode_board(board, player):
     board_st = board
     player = player
-    board_enc = np.zeros([3,3,3]).astype(int)
+    board_enc = np.zeros([3, 3, 3]).astype(int)
     for i in range(3):
         for j in range(3):
             if board_st[i, j] != ' ':
@@ -15,8 +16,9 @@ def encode_board(board, player):
     board_enc[:, :, 2] = player
     return board_enc
 
+
 def decode_board(encoded_board):
-    board_dec = np.zeros([3,3], dtype = 'str')
+    board_dec = np.zeros([3, 3], dtype='str')
     board_dec[board_dec == ''] = ' '
     decode_dict = {0: 'X', 1: 'O'}
     for l in range(2):
