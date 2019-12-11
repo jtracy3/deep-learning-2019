@@ -70,8 +70,6 @@ def play_game(p1=None, p2=None, rnd=0):
         game_data['moves'].append((board.player, move_ind))
         game_data['board_history'].append(deepcopy(board.current_board))
         board.next_player()
-    board.print_board()
-    print(game_data['winner'])
     return game_data
 
 
