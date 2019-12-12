@@ -12,3 +12,6 @@ At the onset of this project we set out to completely replicate this framework, 
 
 In AlphaEpsilon, we retain the \textit{tabular rasa} state of the network, providing only the rules for the game and no other human input.
 We also retain the idea of self-play, where we create a set of play state data to then feed into the neural network to train.
+Originally we wanted to use the AlphaZero framework to learn the game.
+Unfortunately, Monte Carlo Tree Search was a little over our heads and we were unable to get it plugged into our framework.
+We instead decided to build both a dense network that would flatten the board and run it through a neural net of fully connected layers, and a second network with convolutional layers that would take a 3x3x1 tensor with the current board state and the outcome.
