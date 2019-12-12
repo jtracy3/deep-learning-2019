@@ -1,0 +1,28 @@
+\subsection{Model Results}
+
+In the tables below, you can see how each of the models performed under different scenarios. As expected, the random model was the worst of the three, and both the dense and convolutional models significantly improved upon it. They were roughly similar when playing a random opponent.
+
+	\begin{table}[H]
+	\centering
+	\begin{tabular}{llll}
+		\hline
+		\textbf{Player} & \textbf{X Wins} & \textbf{O Wins} & \textbf{Draw} \\ \hline
+		Random          & 61.1\%          & 27.6\%          & 11.3\%        \\
+		Dense           & 88.7\%          & 0\%           & 11.30\%        \\
+		Convolutional   & 92.2\%            & 0\%           & 7.8\%         \\ \hline
+	\end{tabular}
+	\caption{Win percentages for each of the models playing as X, playing against the random model as O.}
+\end{table}
+
+Next, to decide who was the superior model, we pitted the dense model and the convolutional model against each other. Below you can see that the convolutional model came out on top, winning more often when it went first, and also forcing more draws when it went second.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{llll}
+		\hline
+		\textbf{Player Who Went First} & \textbf{X Wins} & \textbf{O Wins} & \textbf{Draw} \\ \hline
+		Dense           & 77.2\%          & 6.0\%           & 16.80\%        \\
+		Convolutional   & 84.7\%            & 5.5\%           & 9.8\%         \\ \hline
+	\end{tabular}
+	\caption{Win percentages playing each other, switching who played first}
+\end{table}
