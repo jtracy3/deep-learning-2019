@@ -1,0 +1,6 @@
+%! Author = kaliw
+%! Date = 12/10/2019
+
+% Player Training
+
+Our neural network players were trained on data from 100,000 random games.  Each board state and it's corresponding result [win, loss, draw] were recorded and cached.  The result was 762,553 board states with outcomes.  The training set contained 610,042 samples while the validation set contain 152,511 samples. Both models were trained over 20 epochs of the data and a batch size of 500.
