@@ -39,7 +39,7 @@
 
 	\input{introduction.tex}
 
-\section{TicTacToe}
+\section{The Game}
 
 	\input{tictactoe.tex}
 
@@ -49,27 +49,23 @@
 	\input{dense_player.tex}
 	\input{convolution_player.tex}
 
-\begin{table}[]
-	\centering
-	\begin{tabular}{llll}
-	\hline
-	\textbf{Player} & \textbf{X Wins} & \textbf{O Wins} & \textbf{Draw} \\ \hline
-	Random          & 61.1\%          & 27.6\%          & 11.3\%        \\
-	Dense           & 63.7\%          & 0.4\%           & 35.9\%        \\
-	Convolutional   & 90\%            & 0.4\%           & 9.6\%         \\ \hline
-	\end{tabular}
-	\caption{Win percentages for each of the players given 1000 games.}
-\end{table}
-
-\section{Training and Validation}
+	\begin{table}[]
+		\centering
+		\begin{tabular}{llll}
+		\hline
+		\textbf{Player} & \textbf{X Wins} & \textbf{O Wins} & \textbf{Draw} \\ \hline
+		Random          & 61.1\%          & 27.6\%          & 11.3\%        \\
+		Dense           & 63.7\%          & 0.4\%           & 35.9\%        \\
+		Convolutional   & 90\%            & 0.4\%           & 9.6\%         \\ \hline
+		\end{tabular}
+		\caption{Win percentages for each of the players given 1000 games.}
+	\end{table}
 
 	\input{training.tex}
 
 \section{Human vs Player}
 
 	\input{human_v_player.tex}
-
-	Random change.
 
 %\nocite{*}
 %
