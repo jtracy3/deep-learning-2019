@@ -5,10 +5,11 @@ import pickle
 import random
 import time
 
-ttt_model = pickle.load(open('dnn_model.pkl', 'rb'))
+dnn_model = pickle.load(open('dnn_dense_model2.pkl', 'rb'))
 
+conv_model = pickle.load(open('dnn_conv_model2.pkl','rb'))
 
-def best_move(board, model, player, rnd=0):
+def best_move(board, model, player, rnd=0, flatten=True):
     scores = []
     moves = board.possible_actions()
 
@@ -17,9 +18,24 @@ def best_move(board, model, player, rnd=0):
         future = deepcopy(board)
         future.move(*moves[i])
 
-        flattened_board = np.array(future.flatten_board())
-        flattened_board = flattened_board.reshape((-1,9))
-        prediction = model.predict(flattened_board)[0]
+        if flatten:
+          current_board = np.array(future.flatten_board())
+          current_board = current_board.reshape((-1,9))
+        else:
+          current_board = future.current_board
+          # print(current_board)
+          n_rows, n_cols = current_board.shape
+          for i in range(n_rows):
+            for j in range(n_cols):
+              if current_board[i][j] == ' ':
+                current_board[i][j] = 0
+              elif current_board[i][j] == 'X':
+                current_board[i][j] = 1
+              elif current_board[i][j] == 'O':
+                current_board[i][j] = 2
+          current_board = current_board.reshape((-1, 3, 3, 1))
+
+        prediction = model.predict(current_board)[0]
         if player == 0:
             win_prediction = prediction[1]
             loss_prediction = prediction[2]
@@ -41,7 +57,6 @@ def best_move(board, model, player, rnd=0):
 
     # Choose a move completely at random
     return moves[random.randint(0, len(moves) - 1)]
-
 
 def get_player_move():
     row = int(input("Enter the row that you want to play on (1, 2, or 3): ")) - 1
@@ -68,18 +83,50 @@ def idiot_check(i=0):
         return idiot_check(i=i)
     return row, col
 
+def number_check(num,max,j=0):
+    if (num.isdigit()):
+        if int(num) in range(1,max+1):
+            return int(num)
+    j+=1
+    print("Invalid entry. Try again: ")
+    return None
+
+
 
 playAgain = 'y'
 while playAgain == 'y':
     skip = False
     game_data = dict(moves=list(), board_history=list(), winner=None)
+    valid = False
+    while valid != True:
+        valid = True
+        opponent = input("\n Welcome to Pokemon Gym Tic Tac Toe. First, choose your opponent (enter the number next to opponent): \n (1) Charmander \n (2) Charmeleon \n (3) Charizard \n")
+        opponent = number_check(opponent, 3)
+        if opponent == None:
+            valid = False
+            continue
 
-    var = int(input("Would you like to go first or second? Enter 1 for first, 2 for 2nd: "))
-    print("\n")
+        if opponent == 1:
+            flatten = None
+            model_selected = None
+        elif opponent == 2:
+            flatten = True
+            model_selected = dnn_model
+        elif opponent == 3:
+            flatten = False
+            model_selected = conv_model
 
-    if var not in [1, 2]:
-        print("You didn't enter either 1 or 2...")
-        skip = True
+    valid = False
+    while valid != True:
+        valid = True
+        var = input("Would you like to go first or second? Enter 1 for first, 2 for 2nd: ")
+        print("\n")
+
+        var = number_check(var, 2)
+        if var == None:
+            valid = False
+            continue
+
 
     board = TicTacToe()
     if var == 1:
@@ -92,6 +139,7 @@ while playAgain == 'y':
     actions = board.possible_actions()
     while play and actions and not skip:
         actions = board.possible_actions()
+        m = len(actions)
 
         if board.player - var == -1:
 
@@ -109,8 +157,14 @@ while playAgain == 'y':
             time.sleep(1)
             print("My turn: ")
             time.sleep(1)
-            move_ind = best_move(board, ttt_model, board.player, 0)
-            board.move(*move_ind)
+            if model_selected == None:
+                pick = np.random.randint(0, m)
+                move_ind = actions[pick]
+                board.move(*move_ind)
+            else:
+
+                move_ind = best_move(board, model_selected, board.player, 0, flatten)
+                board.move(*move_ind)
 
             board.print_board()
 
@@ -125,10 +179,8 @@ while playAgain == 'y':
         elif a_winner and reward == 0:
             play = False
             game_data['winner'] = 0.5
-            if board.player == var-1:
-                print("You win!")
-            else:
-                print("You're an idiot lol")
+
+            print("Tie game.")
 
         game_data['moves'].append((board.player, move_ind))
         game_data['board_history'].append(deepcopy(board.current_board))
