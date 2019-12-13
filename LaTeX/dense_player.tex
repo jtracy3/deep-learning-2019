@@ -4,7 +4,8 @@
 % Dense Net
 \subsection{The Dense Player (aka Charmeleon)}
 
-Our first neural net we developed, Charmeleon, was created using a deep, fully connected  network.
+Our first neural net we developed, which we will refer to as Charmeleon, was created using a dense, fully connected network. We expect this net to perform much better than the random model, but worse than the upcoming convolutional model.
+
 The network architecture we use is:
 \begin{enumerate}
 	\item Fully Connected 400x1
@@ -24,7 +25,7 @@ The network architecture we use is:
 	\item Fully Connected 3x1
 	\item Softmax
 \end{enumerate}
-This model takes a flattened game board as input as x, and the array [win, loss, draw] as y. It then evaluates the board states, learning whether a specific board state corresponding to either a win, loss, or draw. A few rounds of trial and error landed us on this specific architecture. Against the random model, it performed quite well, raising the win percentage from 60\% to 88\%. The full results of the modoels can be seen below in Table 1. 
+This model takes a flattened game board as input as x, and the array [win, loss, draw] as y. It then evaluates the board states, learning whether a specific board state corresponding to either a win, loss, or draw. A bit of trial and error landed us on this specific architecture. Against the random model, it performed quite well, raising the win percentage from 60\% to 90\%. The full results of the models can be seen below in Table 1. 
 
 For this model, we used an Adam optimizer with a learning rate of 0.0001, $\beta_1$ of 0.9 and $\beta_2$ of 0.999. Below you can see how results of the training runs:
 

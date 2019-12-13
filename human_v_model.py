@@ -5,9 +5,9 @@ import pickle
 import random
 import time
 
-dnn_model = pickle.load(open('dnn_dense_model2.pkl', 'rb'))
+dnn_model = pickle.load(open('dnn_dense_model.pkl', 'rb'))
 
-conv_model = pickle.load(open('dnn_conv_model2.pkl','rb'))
+conv_model = pickle.load(open('dnn_conv_model.pkl','rb'))
 
 def best_move(board, model, player, rnd=0, flatten=True):
     scores = []
