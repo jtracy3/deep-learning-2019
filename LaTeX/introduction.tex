@@ -3,15 +3,14 @@
 
 % Introduction
 
-Our project was an implementation of a Neural Network architecture to learn how to master the all-time favorite game of Tic Tac Toe.
+Our project was an implementation of a neural network architecture to learn how to master the all-time favorite game of tic-tac-toe.
 The inspiration for this project came from AlphaZero, the elegant framework used to defeat world-class Go players such as Lee Sedol.
-AlphaZero generalized on the Alpha Go framework and thus can be applied to all games of a certain class, namely if a turn based game with perfect knowledge at each turn.
-AlphaZero also relies solely on self-play to build the training data for the network;
-needing only the rules of the game to begin playing.
-At the onset of this project we set out to completely replicate this framework, but instead we took some key lessons from AlphaZero and created our own framework which we aptly named AlphaEpsilon.
+AlphaZero generalized on the Alpha Go framework and thus can be applied to all games of a certain class, namely turn based games with perfect knowledge at each turn.
+AlphaZero also relies solely on self-play to build the training data for the network, needing only the rules of the game to begin playing.
+At the onset of this project we set out to completely replicate this framework, but instead we took some key lessons from AlphaZero and created our own framework which we have named AlphaEpsilon.
 
-In AlphaEpsilon, we retain the \textit{tabular rasa} state of the network, providing only the rules for the game and no other human input.
+In AlphaEpsilon, we retain the \textit{tabula rasa} state of the network, providing only the rules for the game and no other human input.
 We also retain the idea of self-play, where we create a set of play state data to then feed into the neural network to train.
-Originally we wanted to use the AlphaZero framework to learn the game.
+Originally we wanted to use the entirety of the AlphaZero framework to learn the game.
 Unfortunately, Monte Carlo Tree Search was a little over our heads and we were unable to get it plugged into our framework.
 We instead decided to build both a dense network that would flatten the board and run it through a neural net of fully connected layers, and a second network with convolutional layers that would take a 3x3x1 tensor with the current board state and the outcome.
