@@ -1,28 +1,31 @@
 \subsection{Model Results}
 
-In the tables below, you can see how each of the models performed under different scenarios. As expected, the random model was the worst of the three, and both the dense and convolutional models significantly improved upon it. They were roughly similar when playing a random opponent.
+In the tables below, you can see how each of the models performed under different scenarios.
+As expected, the random model was the worst of the three, and both the dense and convolutional models significantly improved upon it.
+They were roughly similar when playing a random opponent.
 
 	\begin{table}[H]
 	\centering
 	\begin{tabular}{llll}
 		\hline
-		\textbf{Player} & \textbf{X Wins} & \textbf{O Wins} & \textbf{Draw} \\ \hline
-		Random          & 61.1\%          & 27.6\%          & 11.3\%        \\
-		Dense           & 89.9\%          & 0\%           & 11.10\%        \\
-		Convolutional   & 90.4\%            & 0\%           & 9.6\%         \\ \hline
+		\textbf{Agent} & \textbf{X Wins} & \textbf{O Wins} & \textbf{Draw} \\ \hline
+		Random         & 61.1\%          & 27.6\%          & 11.3\%        \\
+		Dense          & 89.9\%          & 0\%             & 11.10\%       \\
+		Convolutional  & 90.4\%          & 0\%             & 9.6\%         \\ \hline
 	\end{tabular}
 	\caption{Win percentages for each of the models playing as X, playing against the random model as O.}
 \end{table}
 
-Next, to decide who was the superior model, we pitted the dense model and the convolutional model against each other. Below you can see that the convolutional model was marginally better, especially at turning potential draw games into wins. 
+Next, to decide who was the superior model, we pitted the dense and the convolutional models against each other.
+Below you can see that the convolutional model was marginally better, especially at turning potential draw games into wins.
 
 \begin{table}[H]
 	\centering
 	\begin{tabular}{llll}
 		\hline
-		\textbf{Player Who Went First} & \textbf{X Wins} & \textbf{O Wins} & \textbf{Draw} \\ \hline
-		Dense           & 87.3\%          & 5.6\%           & 7.1\%        \\
-		Convolutional   & 92.2\%            & 5.9\%           & 1.9\%         \\ \hline
+		\textbf{Agent With First Move} & \textbf{X Wins} & \textbf{O Wins} & \textbf{Draw} \\ \hline
+		Dense           			   & 87.3\%          & 5.6\%           & 7.1\%         \\
+		Convolutional   			   & 92.2\%          & 5.9\%           & 1.9\%         \\ \hline
 	\end{tabular}
 	\caption{Win percentages playing each other, switching who played first}
 \end{table}

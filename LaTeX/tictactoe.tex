@@ -13,7 +13,6 @@ Regardless, tic-tac-toe has been around to a very long time.
 Its simple gameplay makes it a great choice for an introduction into deep learning for games.
 
 When we instantiate our game we create a 3x3 array of empty strings.
-Players are mapped with a dictionary for whether they're the first or second player.
-Moves are determined use row and column inputs into the 3x3 array.
-After each move, the remaining spots on the board are saved as possible actions.
-Futhermore, our check winner method determines if a player has won the game after their turn.
+Players are mapped using a dictionary for whether they are the first (X) or second (O) player.
+Row and column inputs from a human or model agent determine the moves that are recorded into the 3x3 array.
+After each move, the remaining spots on the board are saved as possible actions, and our check winner method determines if a player has won the game after their turn.
